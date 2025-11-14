@@ -19,6 +19,13 @@ const Navbar = () => {
     { name: "Executive Financial Management Dashboard", url: "https://qxxcbwpmeasz5qsuscyfnt.streamlit.app/" },
   ];
 
+  const applicationLinks = [
+    { name: "Employee Onboarding App", url: "https://employee-onboarding-portal-production.up.railway.app/" },
+    { name: "Project Management Software", url: "https://gcc-ui-production.up.railway.app/" },
+    { name: "Learning management System", url: "https://lms-ui-production.up.railway.app/" },
+    { name: "Clinic Management System", url: "https://smartclinic.lovable.app" },
+  ];
+
   const caseStudyLinks = [
     { name: "Field Service Management", url: "https://sfwtechnologies-my.sharepoint.com/:v:/p/sivakumar/ES3OjFvorX9NnWKMHvPRV6cByHn5TY5TOXU6EQMzgRC9Kg" },
     { name: "Digital Transformation", url: "https://sfwtechnologies-my.sharepoint.com/:v:/p/sivakumar/EUNQgoiEGrxNro8KNoNO8SQBQWL8ywkV_TGeHF9nHP_A5A" },
@@ -28,12 +35,6 @@ const Navbar = () => {
     { name: "SFW AI -Management Dashboard", url: "https://sfwtechnologies-my.sharepoint.com/:v:/p/sivakumar/EfVbjt19aoxDr3qQQ1O2uEcBSi2UGRDs8jV59Kz-a0XQcg" },
     { name: "SFW Matching Tool", url: "https://sfwtechnologies-my.sharepoint.com/:v:/p/sivakumar/EVvZVMpfuN9JvXPu2eDWOSABXo4ZE42F3utMyHAoPQIERg" },
   ];
-
-  const scrollToDemos = () => {
-    const demosSection = document.getElementById("demos");
-    demosSection?.scrollIntoView({ behavior: "smooth" });
-    setIsMobileMenuOpen(false);
-  };
 
   return (
     <nav
@@ -69,10 +70,32 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Figma */}
-            <a href="#figma" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
-              Figma
-            </a>
+            {/* Applications Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
+                Applications <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-72 bg-white backdrop-blur-md">
+                {applicationLinks.length > 0 ? (
+                  applicationLinks.map((application) => (
+                    <DropdownMenuItem key={application.name} asChild>
+                      <a
+                        href={application.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cursor-pointer"
+                      >
+                        {application.name}
+                      </a>
+                    </DropdownMenuItem>
+                  ))
+                ) : (
+                  <DropdownMenuItem disabled className="text-gray-400">
+                    Coming soon
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {/* Case Studies Dropdown */}
             <DropdownMenu>
@@ -95,15 +118,12 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Videos */}
-            <a href="#videos" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
-              Videos
+            {/* Figma */}
+            <a href="#figma" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors">
+              Figma
             </a>
 
             {/* CTA Buttons */}
-            <Button onClick={scrollToDemos} variant="outline" size="sm" className="ml-2 border-gray-300 bg-transparent text-gray-700 hover:bg-gray-50">
-              Try Demos
-            </Button>
             <Link to="/login">
               <Button size="sm" className="bg-dodger-blue-500 text-white hover:bg-dodger-blue-600 shadow-lg">
                 Login
@@ -139,12 +159,28 @@ const Navbar = () => {
                 </a>
               ))}
             </div>
+            <div className="space-y-2">
+              <p className="text-xs font-semibold text-gray-500 uppercase">Applications</p>
+              {applicationLinks.length > 0 ? (
+                applicationLinks.map((application) => (
+                  <a
+                    key={application.name}
+                    href={application.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block py-2 text-sm text-gray-700 hover:text-gray-900 transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {application.name}
+                  </a>
+                ))
+              ) : (
+                <p className="block py-2 text-sm text-gray-400">Coming soon</p>
+              )}
+            </div>
             <div className="border-t border-gray-200 pt-4 space-y-2">
-              <a href="#figma" className="block py-2 text-sm text-gray-700 hover:text-gray-900 transition-colors">
-                Figma
-              </a>
               <div className="space-y-2">
-                <p className="text-xs font-semibold text-gray-500 uppercase pt-2">Case Studies</p>
+                <p className="text-xs font-semibold text-gray-500 uppercase">Case Studies</p>
                 {caseStudyLinks.map((caseStudy) => (
                   <a
                     key={caseStudy.name}
@@ -158,14 +194,11 @@ const Navbar = () => {
                   </a>
                 ))}
               </div>
-              <a href="#videos" className="block py-2 text-sm text-gray-700 hover:text-gray-900 transition-colors">
-                Videos
+              <a href="#figma" className="block py-2 text-sm text-gray-700 hover:text-gray-900 transition-colors">
+                Figma
               </a>
             </div>
             <div className="border-t border-gray-200 pt-4 space-y-2">
-              <Button onClick={scrollToDemos} variant="outline" className="w-full border-gray-300 bg-transparent text-gray-700 hover:bg-gray-50">
-                Try Demos
-              </Button>
               <Link to="/login" className="block" onClick={() => setIsMobileMenuOpen(false)}>
                 <Button className="w-full bg-dodger-blue-500 text-white hover:bg-dodger-blue-600 shadow-lg">
                   Login
