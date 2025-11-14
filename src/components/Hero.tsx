@@ -1,15 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   const scrollToDemos = () => {
     const demosSection = document.getElementById("demos");
     demosSection?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const scrollToVideos = () => {
-    const videosSection = document.getElementById("videos");
-    videosSection?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -34,7 +29,7 @@ const Hero = () => {
 
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-white drop-shadow-lg">
-            SFW in Action
+            Softworks in Action
           </h1>
 
           {/* CTA Buttons */}
@@ -47,31 +42,6 @@ const Hero = () => {
               Try Live Demos
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={scrollToVideos}
-              className="border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 text-lg px-8 py-6 group"
-            >
-              <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-              Watch Videos
-            </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto pt-12">
-            <div className="space-y-2">
-              <div className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg">3</div>
-              <div className="text-sm text-white/80">Live Products</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg">AI</div>
-              <div className="text-sm text-white/80">Powered Solutions</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg">OSS</div>
-              <div className="text-sm text-white/80">Open Source</div>
-            </div>
           </div>
         </div>
       </div>
